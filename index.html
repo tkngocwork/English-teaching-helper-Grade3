@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trợ lý Dạy học Tiếng Anh 3 - Global Success</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Canvas dùng để bắn pháo hoa ăn mừng -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <div class="app-container">
+    <!-- THANH BÊN (Sidebar) -->
+    <aside class="sidebar">
+      <div class="logo-section">
+        <span class="logo-icon">🎒</span>
+        <div class="logo-text">
+          <h1>ENGLISH 3</h1>
+          <span>Global Success Helper</span>
+        </div>
+      </div>
+
+      <!-- Khung chọn Unit bài học -->
+      <div class="unit-title-nav">Bài học (Units)</div>
+      <nav class="unit-selector" id="unit-nav-list">
+        <!-- JS sẽ sinh danh sách các Unit ở đây -->
+      </nav>
+
+      <!-- Khung tiện ích lớp học cố định -->
+      <div class="sidebar-tools">
+        <div class="unit-title-nav">Tiện ích Lớp học</div>
+        <button class="tool-nav-btn" id="nav-wheel-btn">
+          <span>🎡</span> Vòng quay may mắn
+        </button>
+      </div>
+    </aside>
+
+    <!-- KHU VỰC NỘI DUNG CHÍNH (Main Content) -->
+    <main class="main-content">
+      <header class="content-header">
+        <!-- Tiêu đề bài học đang chọn -->
+        <h2 class="current-title" id="current-lesson-title">
+          <span>✨</span> Đang tải bài học...
+        </h2>
+
+        <!-- Các tab chế độ học tập (Ẩn khi vào màn hình Tiện ích) -->
+        <div class="lesson-tabs" id="lesson-tabs-bar">
+          <button class="tab-btn active" data-tab="vocab">Từ vựng</button>
+          <button class="tab-btn" data-tab="dialogue">Hội thoại</button>
+          <button class="tab-btn" data-tab="games">Trò chơi</button>
+        </div>
+
+        <!-- Tiện ích điểm số & đếm ngược lớp học -->
+        <div class="global-classroom-widgets">
+          <!-- Công tắc phép thuật Harry Potter -->
+          <div class="hp-mode-widget" title="Bật chế độ giọng đọc nhân vật Harry Potter">
+            <label class="hp-switch">
+              <input type="checkbox" id="hp-mode-toggle">
+              <span class="hp-slider">🧙‍♂️ Harry Potter</span>
+            </label>
+          </div>
+
+          <!-- Đếm ngược thời gian -->
+          <div class="timer-widget" id="global-timer" title="Bấm để đặt giờ">
+            ⏱️ <span id="timer-display">00:00</span>
+          </div>
+
+          <!-- Bảng điểm thi đua -->
+          <div class="scoreboard-widget">
+            <div class="team-score">
+              <span class="team-badge red"></span>
+              <span class="team-name">Red:</span>
+              <button class="btn-score-adjust" id="score-red-minus">-</button>
+              <span class="score-num" id="score-red">0</span>
+              <button class="btn-score-adjust" id="score-red-plus">+</button>
+            </div>
+            <div style="border-left: 2px solid #E5E7EB; height: 20px;"></div>
+            <div class="team-score">
+              <span class="team-badge blue"></span>
+              <span class="team-name">Blue:</span>
+              <button class="btn-score-adjust" id="score-blue-minus">-</button>
+              <span class="score-num" id="score-blue">0</span>
+              <button class="btn-score-adjust" id="score-blue-plus">+</button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Khung hiển thị các mô-đun chức năng -->
+      <section class="module-viewport" id="module-viewport">
+        
+        <!-- MODULE 1: TỪ VỰNG (VOCABULARY) -->
+        <div class="module-view" id="view-vocab">
+          <div class="vocab-container">
+            <div class="flashcard-3d-scene">
+              <div class="flashcard-3d" id="vocab-flashcard">
+                <!-- Mặt trước (Tiếng Anh) -->
+                <div class="flashcard-face flashcard-front">
+                  <div class="card-emoji" id="card-front-emoji">👋</div>
+                  <div class="card-word" id="card-front-word">hello</div>
+                  <div class="card-ipa" id="card-front-ipa">/həˈləʊ/</div>
+                  <div class="card-instruction">Bấm để lật xem nghĩa</div>
+                </div>
+                <!-- Mặt sau (Tiếng Việt) -->
+                <div class="flashcard-face flashcard-back">
+                  <div class="card-meaning" id="card-back-meaning">xin chào</div>
+                  <div class="card-instruction">Bấm để lật lại</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Điều khiển lật thẻ -->
+            <div class="flashcard-controls">
+              <button class="btn-nav-card" id="card-prev-btn">◀</button>
+              <span class="vocab-index-indicator" id="vocab-index-display">1 / 6</span>
+              <button class="btn-nav-card" id="card-next-btn">▶</button>
+            </div>
+
+            <!-- Tương tác giọng nói -->
+            <div class="flashcard-actions">
+              <button class="btn btn-primary" id="card-speak-btn">Nghe phát âm 🔊</button>
+              <button class="btn btn-vocab-action" id="card-listen-btn">🎙️ Bé tập đọc</button>
+            </div>
+            
+            <div class="speech-feedback-panel" id="speech-feedback" style="display: none;">
+              Bấm nút microphone để nói thử nhé!
+            </div>
+
+            <!-- Huy hiệu nhân vật phép thuật đang đọc -->
+            <div id="hp-speaker-badge" class="hp-badge" style="display: none;">
+              🧙‍♂️ Giọng đọc: <span id="hp-speaker-name">Harry</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- MODULE 2: HỘI THOẠI (CONVERSATION) -->
+        <div class="module-view" id="view-dialogue" style="display: none;">
+          <div class="dialogue-container" id="dialogue-list">
+            <!-- JS sẽ render các câu hội thoại ở đây -->
+          </div>
+          <div class="dialogue-actions-bar">
+            <button class="btn btn-primary" id="btn-play-all-dialogue">▶ Đọc toàn bộ đoạn hội thoại</button>
+          </div>
+        </div>
+
+        <!-- MODULE 3: TRÒ CHƠI (GAMES) -->
+        <div class="module-view" id="view-games" style="display: none;">
+          <div class="game-outer-wrapper">
+            <!-- Tab chọn loại game -->
+            <div class="game-tabs">
+              <button class="game-tab active" data-game="matching">Ghép cặp từ 🃏</button>
+              <button class="game-tab" data-game="builder">Xếp chữ cái 🔠</button>
+              <button class="game-tab" data-game="listenpick">Nghe & chọn hình 🎧</button>
+              <button class="game-tab" data-game="tpr">Nhìn Camera vận động 📸</button>
+            </div>
+            <!-- Viewport chứa game đang chơi -->
+            <div id="game-active-viewport" style="flex-grow: 1;">
+              <!-- Game content sinh động sẽ được render ở đây -->
+            </div>
+          </div>
+        </div>
+
+        <!-- MODULE 4: VÒNG QUAY MAY MẮN (LUCKY WHEEL) -->
+        <div class="module-view" id="view-wheel" style="display: none;">
+          <div class="wheel-layout">
+            <!-- Cột trái chứa vòng quay canvas -->
+            <div class="wheel-col-left">
+              <div class="canvas-container">
+                <canvas id="wheel-canvas" width="420" height="420"></canvas>
+                <!-- Nút đè ở giữa để bấm quay -->
+                <button class="wheel-spin-overlay-btn" id="wheel-spin-trigger"></button>
+              </div>
+              <div style="margin-top: 16px;">
+                <button class="btn btn-primary" id="btn-spin-wheel-giant">VÒNG QUAY MAY MẮN 🎡</button>
+              </div>
+            </div>
+
+            <!-- Cột phải quản lý danh sách học sinh -->
+            <div class="wheel-col-right">
+              <h3>
+                <span>Danh sách học sinh</span>
+                <span id="student-count" style="font-size: 13px; color: #7F8C8D;">(16)</span>
+              </h3>
+              <div class="student-list-box" id="student-list-container">
+                <!-- Danh sách học sinh có nút Xóa -->
+              </div>
+              <form class="add-student-form" id="add-student-form">
+                <input type="text" id="input-student-name" placeholder="Thêm tên..." required>
+                <button class="btn btn-primary" type="submit" style="padding: 8px 16px; font-size: 14px;">Thêm</button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+      </section>
+    </main>
+  </div>
+
+  <!-- POPUP THỜI GIAN (TIMER CONFIG MODAL) -->
+  <div class="modal-overlay" id="timer-modal">
+    <div class="modal-card">
+      <div class="modal-emoji">⏰</div>
+      <h3 class="modal-title">Cài đặt giờ đếm ngược</h3>
+      <div class="modal-body">
+        <p style="margin-bottom: 12px;">Hãy chọn thời gian bạn muốn thiết lập cho hoạt động:</p>
+        <div style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px;">
+          <button class="btn btn-secondary" style="padding: 8px 16px; font-size: 14px;" data-time="30">30 Giây</button>
+          <button class="btn btn-secondary" style="padding: 8px 16px; font-size: 14px;" data-time="60">1 Phút</button>
+          <button class="btn btn-secondary" style="padding: 8px 16px; font-size: 14px;" data-time="120">2 Phút</button>
+          <button class="btn btn-secondary" style="padding: 8px 16px; font-size: 14px;" data-time="300">5 Phút</button>
+        </div>
+        <div style="display: flex; gap: 6px; align-items: center; justify-content: center;">
+          <label style="font-weight: bold;">Tự chọn (giây):</label>
+          <input type="number" id="custom-timer-input" min="5" max="3600" value="60" style="padding: 6px; width: 80px; border-radius: 6px; border: 2px solid #E5E7EB; font-weight: bold; text-align: center;">
+        </div>
+      </div>
+      <div style="display: flex; gap: 12px; justify-content: center;">
+        <button class="btn btn-secondary" id="timer-modal-cancel">Hủy</button>
+        <button class="btn btn-primary" id="timer-modal-start">Bắt đầu chạy</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- POPUP KẾT QUẢ/ĂN MỪNG (CELEBRATION MODAL) -->
+  <div class="modal-overlay" id="celebration-modal">
+    <div class="modal-card">
+      <div class="modal-emoji" id="celebration-emoji">🏆</div>
+      <h3 class="modal-title" id="celebration-title">Chúc mừng!</h3>
+      <div class="modal-body" id="celebration-body">
+        Chúc mừng đội đỏ đã ghi được điểm số!
+      </div>
+      <div style="display: flex; justify-content: center;">
+        <button class="btn btn-primary" id="celebration-close-btn">Tuyệt vời!</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Các file JS cấu hình hệ thống -->
+  <script src="js/data.js"></script>
+  <script src="js/speech.js"></script>
+  <script src="js/wheel.js"></script>
+  <script src="js/games.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
