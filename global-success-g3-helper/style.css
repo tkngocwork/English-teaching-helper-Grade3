@@ -1,0 +1,1399 @@
+/* 
+  Giao diện phong cách Hoạt họa Tươi sáng (Bright & Playful Pastel Theme)
+  Phù hợp cho học sinh Tiểu học lớp 3.
+  Sử dụng Font chữ tròn dễ thương Fredoka & Nunito.
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;600;700;800&display=swap');
+
+:root {
+  --bg-gradient: linear-gradient(135deg, #FFF5E4 0%, #FFE3E1 50%, #DFF6FF 100%);
+  --color-primary: #FF6B8B; /* Hồng dâu ngọt ngào */
+  --color-primary-hover: #FF4A71;
+  --color-secondary: #4D96FF; /* Xanh da trời */
+  --color-secondary-hover: #3385FF;
+  --color-success: #6BCB77; /* Xanh lá tươi */
+  --color-warning: #FFD93D; /* Vàng nắng */
+  --color-text: #2C3E50;
+  --color-card-bg: rgba(255, 255, 255, 0.9);
+  --font-title: 'Fredoka', sans-serif;
+  --font-body: 'Nunito', sans-serif;
+  --shadow-soft: 0 10px 25px rgba(255, 107, 139, 0.08), 0 4px 10px rgba(0, 0, 0, 0.04);
+  --shadow-pop: 0 6px 0px rgba(0, 0, 0, 0.1);
+  --transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-gradient);
+  background-attachment: fixed;
+  color: var(--color-text);
+  min-height: 100vh;
+  display: flex;
+  overflow-x: hidden;
+}
+
+/* ==========================================================================
+   Bố cục chính (Dashboard Layout)
+   ========================================================================== */
+
+.app-container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  padding: 16px;
+  gap: 16px;
+}
+
+/* Thanh bên (Sidebar) */
+.sidebar {
+  width: 320px;
+  background: var(--color-card-bg);
+  border-radius: 24px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-soft);
+  border: 4px solid #FFFFFF;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 2px dashed #FFD1D1;
+}
+
+.logo-icon {
+  font-size: 38px;
+  animation: bounce 2s infinite;
+}
+
+.logo-text h1 {
+  font-family: var(--font-title);
+  font-size: 24px;
+  color: var(--color-primary);
+  line-height: 1.1;
+}
+
+.logo-text span {
+  font-size: 13px;
+  color: #7F8C8D;
+  font-weight: bold;
+}
+
+/* Danh sách chọn Unit */
+.unit-selector {
+  flex-grow: 1;
+  overflow-y: auto;
+  margin-bottom: 16px;
+  padding-right: 4px;
+}
+
+.unit-selector::-webkit-scrollbar {
+  width: 6px;
+}
+.unit-selector::-webkit-scrollbar-thumb {
+  background-color: #FFD1D1;
+  border-radius: 10px;
+}
+
+.unit-title-nav {
+  font-family: var(--font-title);
+  font-size: 15px;
+  color: #95A5A6;
+  text-transform: uppercase;
+  margin: 12px 0 8px 6px;
+  letter-spacing: 0.5px;
+}
+
+.unit-btn {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: transparent;
+  border: 2px solid transparent;
+  text-align: left;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.unit-btn:hover {
+  background: #FFF0F2;
+  color: var(--color-primary);
+  transform: translateX(4px);
+}
+
+.unit-btn.active {
+  background: var(--color-primary);
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(255, 107, 139, 0.3);
+}
+
+/* Nút Tiện ích Lớp học cố định ở Sidebar */
+.sidebar-tools {
+  border-top: 2px dashed #FFD1D1;
+  padding-top: 16px;
+}
+
+.tool-nav-btn {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 16px;
+  background: #F0F3F7;
+  border: none;
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: 15px;
+  color: #5D6D7E;
+  cursor: pointer;
+  transition: var(--transition);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.tool-nav-btn:hover {
+  background: var(--color-secondary);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+}
+
+.tool-nav-btn.active {
+  background: var(--color-secondary);
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(77, 150, 255, 0.3);
+}
+
+/* Khu vực nội dung chính */
+.main-content {
+  flex-grow: 1;
+  background: var(--color-card-bg);
+  border-radius: 24px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-soft);
+  border: 4px solid #FFFFFF;
+  position: relative;
+  overflow-y: auto;
+}
+
+/* Khung tiêu đề bài học */
+.content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 3px solid #F0F3F7;
+}
+
+.current-title {
+  font-family: var(--font-title);
+  font-size: 28px;
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Menu tabs bài học */
+.lesson-tabs {
+  display: flex;
+  gap: 8px;
+  background: #F0F3F7;
+  padding: 6px;
+  border-radius: 50px;
+}
+
+.tab-btn {
+  padding: 8px 18px;
+  border-radius: 50px;
+  border: none;
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: 14px;
+  cursor: pointer;
+  background: transparent;
+  color: #7F8C8D;
+  transition: var(--transition);
+}
+
+.tab-btn:hover {
+  color: var(--color-primary);
+}
+
+.tab-btn.active {
+  background: #FFFFFF;
+  color: var(--color-primary);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Vùng hiển thị Module học tập */
+.module-viewport {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* ==========================================================================
+   MODULE: VOCABULARY (Flashcards)
+   ========================================================================== */
+
+.vocab-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+}
+
+/* Flashcard 3D */
+.flashcard-3d-scene {
+  width: 320px;
+  height: 400px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.flashcard-3d {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+
+.flashcard-3d.flipped {
+  transform: rotateY(180deg);
+}
+
+.flashcard-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 28px;
+  border: 8px solid #FFFFFF;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+/* Mặt trước (English) */
+.flashcard-front {
+  background: linear-gradient(135deg, #FFE5E5 0%, #FFF5E4 100%);
+}
+
+/* Mặt sau (Vietnamese) */
+.flashcard-back {
+  background: linear-gradient(135deg, #E8F9FD 0%, #DFF6FF 100%);
+  transform: rotateY(180deg);
+}
+
+.card-emoji {
+  font-size: 110px;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 8px 8px rgba(0,0,0,0.06));
+}
+
+.card-word {
+  font-family: var(--font-title);
+  font-size: 38px;
+  color: var(--color-primary);
+  margin-bottom: 6px;
+  text-align: center;
+}
+
+.card-ipa {
+  font-size: 18px;
+  color: #7F8C8D;
+  background: rgba(255, 255, 255, 0.6);
+  padding: 4px 12px;
+  border-radius: 50px;
+  font-weight: bold;
+}
+
+.card-meaning {
+  font-family: var(--font-title);
+  font-size: 34px;
+  color: var(--color-secondary);
+  text-align: center;
+}
+
+.card-instruction {
+  font-size: 12px;
+  color: #A6ACAF;
+  margin-top: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Điều hướng Flashcards */
+.flashcard-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.btn-nav-card {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 3px solid #FFD1D1;
+  font-size: 24px;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.btn-nav-card:hover {
+  background: var(--color-primary);
+  color: #FFFFFF;
+  border-color: var(--color-primary);
+  transform: scale(1.1);
+}
+
+.vocab-index-indicator {
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--color-text);
+  background: #F0F3F7;
+  padding: 8px 20px;
+  border-radius: 20px;
+}
+
+.btn-vocab-action {
+  background: var(--color-success);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: 16px;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 6px 12px rgba(107, 203, 119, 0.2);
+}
+
+.btn-vocab-action:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(107, 203, 119, 0.3);
+}
+
+.btn-vocab-action.listening {
+  background: #E74C3C;
+  animation: pulse-red 1.2s infinite;
+}
+
+/* Panel phản hồi nói */
+.speech-feedback-panel {
+  min-height: 48px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 8px 16px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 400px;
+}
+.speech-feedback-panel.success {
+  background: #E8F8F5;
+  color: var(--color-success);
+  border: 2px solid #A2D9CE;
+}
+.speech-feedback-panel.fail {
+  background: #FDEDEC;
+  color: #E74C3C;
+  border: 2px solid #FADBD8;
+}
+
+/* ==========================================================================
+   MODULE: CONVERSATION
+   ========================================================================== */
+
+.dialogue-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.dialogue-bubble {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  animation: slideIn 0.4s ease-out;
+}
+
+.avatar-bubble {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #FFE5E5;
+  border: 3px solid #FFFFFF;
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  flex-shrink: 0;
+}
+
+.dialogue-text-box {
+  background: #FFFFFF;
+  padding: 16px 20px;
+  border-radius: 20px;
+  border-top-left-radius: 4px;
+  box-shadow: var(--shadow-soft);
+  position: relative;
+  flex-grow: 1;
+}
+
+.dialogue-speaker {
+  font-weight: 800;
+  color: var(--color-primary);
+  font-size: 14px;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.dialogue-english {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.dialogue-vietnamese {
+  font-size: 14px;
+  color: #7F8C8D;
+}
+
+.dialogue-audio-btn {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #F0F3F7;
+  border: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  font-size: 16px;
+}
+
+.dialogue-audio-btn:hover {
+  background: var(--color-secondary);
+  color: white;
+}
+
+.dialogue-actions-bar {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+/* ==========================================================================
+   MODULE: GAMES (Các lớp chung & Matching, Word Builder)
+   ========================================================================== */
+
+.game-outer-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.game-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.game-tab {
+  padding: 10px 20px;
+  border-radius: 20px;
+  background: #FFFFFF;
+  border: 3px solid #E5E7EB;
+  font-family: var(--font-body);
+  font-weight: 800;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.game-tab:hover {
+  border-color: var(--color-primary);
+}
+
+.game-tab.active {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+
+/* Matching Grid */
+.game-matching-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  padding: 10px;
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.game-card {
+  background: #FFFFFF;
+  border: 4px solid #F0F3F7;
+  border-radius: 20px;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.02);
+  min-height: 120px;
+}
+
+.game-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-secondary);
+  box-shadow: 0 8px 16px rgba(77, 150, 255, 0.1);
+}
+
+.game-card.selected {
+  border-color: var(--color-primary);
+  background: #FFF0F2;
+  box-shadow: 0 8px 16px rgba(255, 107, 139, 0.15);
+}
+
+.game-card.matched {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.8);
+}
+
+.game-card.incorrect {
+  border-color: #E74C3C;
+  background: #FDEDEC;
+  animation: shake 0.4s ease-in-out;
+}
+
+.game-card-icon {
+  font-size: 38px;
+  margin-bottom: 8px;
+}
+
+.game-card-text {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+/* Word Builder */
+.word-builder-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.game-instruction {
+  font-size: 16px;
+  font-weight: 700;
+  color: #7F8C8D;
+  text-align: center;
+}
+
+.word-builder-hint-card {
+  background: linear-gradient(135deg, #E8F9FD 0%, #DFF6FF 100%);
+  border: 4px solid #FFFFFF;
+  border-radius: 20px;
+  padding: 16px 32px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: var(--shadow-soft);
+}
+
+.hint-emoji {
+  font-size: 48px;
+}
+
+.hint-text {
+  font-family: var(--font-title);
+  font-size: 24px;
+  color: var(--color-secondary);
+}
+
+.word-slots-container {
+  display: flex;
+  gap: 8px;
+  margin: 20px 0;
+}
+
+.letter-slot {
+  width: 50px;
+  height: 50px;
+  border: 3px dashed #BDC3C7;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-title);
+  font-size: 22px;
+  font-weight: 700;
+  color: #7F8C8D;
+}
+
+.letter-slot.filled {
+  border: 3px solid var(--color-primary);
+  background: #FFFFFF;
+  color: var(--color-primary);
+}
+
+.letter-slot.space {
+  border: none;
+  width: 25px;
+}
+
+.word-slots-container.incorrect {
+  animation: shake 0.4s ease-in-out;
+}
+
+.word-slots-container.incorrect .letter-slot {
+  border-color: #E74C3C;
+  color: #E74C3C;
+  background: #FDEDEC;
+}
+
+.word-slots-container.correct .letter-slot {
+  border-color: var(--color-success);
+  color: var(--color-success);
+  background: #E8F8F5;
+  animation: bounce 0.6s infinite;
+}
+
+.letters-pool {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.letter-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  background: #FFFFFF;
+  border: 3px solid #E5E7EB;
+  font-family: var(--font-title);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-text);
+  cursor: pointer;
+  box-shadow: 0 4px 0 #BDC3C7;
+  transition: var(--transition);
+}
+
+.letter-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #BDC3C7;
+  border-color: var(--color-secondary);
+}
+
+.letter-btn:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #BDC3C7;
+}
+
+.letter-btn:disabled {
+  background: #F2F4F4;
+  border-color: #E5E7EB;
+  color: #BDC3C7;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.word-builder-actions {
+  display: flex;
+  gap: 12px;
+}
+
+/* Listen & Pick */
+.listen-pick-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.question-progress {
+  font-size: 16px;
+  font-weight: bold;
+  color: #7F8C8D;
+}
+
+.speaker-giant-btn {
+  background: #FFFFFF;
+  border: 4px solid var(--color-secondary);
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
+  transition: var(--transition);
+}
+
+.speaker-giant-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(77, 150, 255, 0.2);
+}
+
+.speaker-icon {
+  font-size: 48px;
+  animation: pulse 1.5s infinite;
+}
+
+.speaker-label {
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+  margin-top: 4px;
+}
+
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  width: 100%;
+}
+
+.opt-card {
+  background: #FFFFFF;
+  border: 4px solid #E5E7EB;
+  border-radius: 20px;
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: var(--transition);
+  min-height: 140px;
+  justify-content: center;
+}
+
+.opt-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-secondary);
+  box-shadow: 0 8px 16px rgba(77, 150, 255, 0.1);
+}
+
+.opt-card.correct {
+  border-color: var(--color-success);
+  background: #E8F8F5;
+  animation: bounce 0.6s 1;
+}
+
+.opt-card.incorrect {
+  border-color: #E74C3C;
+  background: #FDEDEC;
+  animation: shake 0.4s 1;
+}
+
+.opt-emoji {
+  font-size: 50px;
+  margin-bottom: 8px;
+}
+
+.opt-meaning {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* ==========================================================================
+   MODULE: LUCKY WHEEL (Vòng quay)
+   ========================================================================== */
+
+.wheel-layout {
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.wheel-col-left {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.canvas-container {
+  position: relative;
+  background: #FFFFFF;
+  padding: 16px;
+  border-radius: 50%;
+  box-shadow: var(--shadow-soft);
+  border: 4px solid #FFFFFF;
+}
+
+#wheel-canvas {
+  display: block;
+}
+
+.wheel-spin-overlay-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.wheel-col-right {
+  width: 280px;
+  background: #FFFFFF;
+  padding: 20px;
+  border-radius: 20px;
+  border: 3px solid #F0F3F7;
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+}
+
+.wheel-col-right h3 {
+  font-family: var(--font-title);
+  font-size: 18px;
+  color: var(--color-secondary);
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.student-list-box {
+  flex-grow: 1;
+  overflow-y: auto;
+  border: 2px solid #E5E7EB;
+  border-radius: 12px;
+  padding: 8px;
+  margin-bottom: 12px;
+}
+
+.student-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 10px;
+  background: #F8F9FA;
+  border-radius: 8px;
+  margin-bottom: 4px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.student-list-item button {
+  background: transparent;
+  border: none;
+  color: #E74C3C;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.add-student-form {
+  display: flex;
+  gap: 6px;
+}
+
+.add-student-form input {
+  flex-grow: 1;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 2px solid #E5E7EB;
+  font-family: var(--font-body);
+  font-weight: bold;
+}
+
+/* ==========================================================================
+   BẢNG ĐIỂM (Scoreboard) & BỘ ĐẾM GIỜ (Timer) - Cố định Header Góc trên Phải
+   ========================================================================== */
+
+.global-classroom-widgets {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+/* Đồng hồ đếm ngược */
+.timer-widget {
+  background: #FFF9E6;
+  border: 3px solid var(--color-warning);
+  padding: 6px 14px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 800;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Bảng điểm đội nhóm */
+.scoreboard-widget {
+  background: #FFFFFF;
+  border: 3px solid #E5E7EB;
+  border-radius: 16px;
+  padding: 4px 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.team-score {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.team-badge {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+}
+.team-badge.red { background: var(--color-primary); }
+.team-badge.blue { background: var(--color-secondary); }
+
+.team-name {
+  font-weight: 800;
+  font-size: 13px;
+  color: #7F8C8D;
+}
+
+.score-num {
+  font-family: var(--font-title);
+  font-size: 20px;
+  color: var(--color-text);
+  min-width: 22px;
+  text-align: center;
+}
+
+.btn-score-adjust {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: none;
+  background: #F0F3F7;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-score-adjust:hover {
+  background: #E5E7EB;
+}
+
+/* ==========================================================================
+   CÁC PHẦN TỬ CHUNG & POPUPS
+   ========================================================================== */
+
+/* Nút bấm kiểu Bubbly (Buttons) */
+.btn {
+  padding: 12px 24px;
+  border-radius: 16px;
+  border: none;
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: 16px;
+  cursor: pointer;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: white;
+  box-shadow: 0 4px 0 #C0392B;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #C0392B;
+}
+.btn-primary:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #C0392B;
+}
+
+.btn-secondary {
+  background: #FFFFFF;
+  color: #7F8C8D;
+  border: 3px solid #E5E7EB;
+  box-shadow: 0 4px 0 #BDC3C7;
+}
+.btn-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #BDC3C7;
+}
+.btn-secondary:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #BDC3C7;
+}
+
+/* Modal Popup */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(44, 62, 80, 0.4);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-card {
+  background: #FFFFFF;
+  border-radius: 28px;
+  padding: 32px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  border: 8px solid #FFFFFF;
+  text-align: center;
+  transform: scale(0.8);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modal-overlay.active .modal-card {
+  transform: scale(1);
+}
+
+.modal-emoji {
+  font-size: 70px;
+  margin-bottom: 16px;
+  animation: bounce 1s infinite alternate;
+}
+
+.modal-title {
+  font-family: var(--font-title);
+  font-size: 26px;
+  color: var(--color-primary);
+  margin-bottom: 12px;
+}
+
+.modal-body {
+  font-size: 16px;
+  font-weight: 700;
+  color: #7F8C8D;
+  margin-bottom: 24px;
+}
+
+/* Pháo hoa / Confetti ăn mừng */
+#confetti-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 99;
+}
+
+/* ==========================================================================
+   ANIMATIONS & KEYFRAMES
+   ========================================================================== */
+
+@keyframes bounce {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-8px); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+@keyframes pulse-red {
+  0% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.4); }
+  70% { box-shadow: 0 0 0 15px rgba(231, 76, 60, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   MODULE: TPR CAMERA GAME
+   ========================================================================== */
+
+.tpr-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  max-width: 700px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.tpr-camera-box {
+  position: relative;
+  width: 100%;
+  max-width: 540px;
+  background: #2C3E50;
+  border-radius: 28px;
+  border: 10px solid #FF8AAE; /* Viền hồng hoạt hình */
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 4/3;
+}
+
+#tpr-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.tpr-overlay-card {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.95);
+  border: 3px solid var(--color-primary);
+  padding: 10px 20px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  pointer-events: none;
+  z-index: 10;
+  width: 85%;
+}
+
+.tpr-overlay-title {
+  font-family: var(--font-title);
+  font-size: 13px;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.tpr-overlay-command {
+  font-family: var(--font-title);
+  font-size: 22px;
+  color: var(--color-text);
+}
+
+.tpr-overlay-vietnamese {
+  font-size: 14px;
+  color: #7F8C8D;
+  font-weight: bold;
+}
+
+.tpr-countdown-overlay {
+  position: absolute;
+  font-family: var(--font-title);
+  font-size: 100px;
+  color: #FFFFFF;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 0 10px var(--color-primary);
+  pointer-events: none;
+  animation: pulse-countdown 1s infinite alternate;
+  z-index: 10;
+}
+
+.tpr-actions-container {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  justify-content: center;
+}
+
+.tpr-score-award-card {
+  background: #FFFFFF;
+  padding: 16px 20px;
+  border-radius: 20px;
+  border: 3px solid #E5E7EB;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  min-width: 200px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+}
+
+.tpr-score-award-card.red {
+  border-color: #FFD1D1;
+}
+
+.tpr-score-award-card.blue {
+  border-color: #D1E8FF;
+}
+
+.tpr-score-award-title {
+  font-weight: 800;
+  font-size: 15px;
+  color: #7F8C8D;
+}
+
+@keyframes pulse-countdown {
+  0% { transform: scale(0.9); opacity: 0.8; }
+  100% { transform: scale(1.1); opacity: 1; }
+}
+
+/* ==========================================================================
+   CÔNG TẮC HARRY POTTER MODE
+   ========================================================================== */
+
+.hp-mode-widget {
+  display: flex;
+  align-items: center;
+}
+
+.hp-switch {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.hp-switch input {
+  display: none;
+}
+
+.hp-slider {
+  display: inline-block;
+  padding: 8px 16px;
+  background: #EBDEF0;
+  border: 3px solid #D2B4DE;
+  border-radius: 50px;
+  color: #7D3C98;
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: 13px;
+  cursor: pointer;
+  transition: var(--transition);
+  user-select: none;
+}
+
+.hp-switch input:checked + .hp-slider {
+  background: #8E44AD;
+  border-color: #7D3C98;
+  color: #FFFFFF;
+  box-shadow: 0 0 10px rgba(142, 68, 173, 0.4);
+}
+
+.hp-slider:hover {
+  transform: scale(1.05);
+}
+
+.hp-badge {
+  display: inline-block;
+  margin-top: 15px;
+  font-family: var(--font-title);
+  font-weight: 800;
+  font-size: 14px;
+  color: #7D3C98;
+  background: #EBDEF0;
+  border: 3px solid #D2B4DE;
+  padding: 8px 24px;
+  border-radius: 50px;
+  box-shadow: 0 4px 0px rgba(125, 60, 152, 0.15);
+  animation: slideIn 0.3s ease-out;
+  text-align: center;
+}
+
+.hp-badge span {
+  text-transform: capitalize;
+  color: #8E44AD;
+  font-weight: bold;
+}
+
