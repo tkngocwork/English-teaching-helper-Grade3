@@ -1,6 +1,6 @@
 # 🎒 Grade 3 English Teaching Assistant (Global Success Helper)
 
-![Project Cover Banner](cover_thumbnail.png)
+
 
 An interactive, smart teaching assistant application specifically designed for the Grade 3 English curriculum (Vietnamese Educational Standard - Global Success). Developed as a Single Page Web Application (SPA), it features a bright, playful cartoon aesthetic, smooth animations, and interactive sound effects. It is optimized for interactive smartboards and projectors in classrooms.
 
