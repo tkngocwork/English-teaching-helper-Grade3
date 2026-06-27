@@ -1,6 +1,17 @@
 # 🎒 Grade 3 English Teaching Assistant (Global Success Helper)
 
+![Project Cover Banner](cover_thumbnail.png)
+
 An interactive, smart teaching assistant application specifically designed for the Grade 3 English curriculum (Vietnamese Educational Standard - Global Success). Developed as a Single Page Web Application (SPA), it features a bright, playful cartoon aesthetic, smooth animations, and interactive sound effects. It is optimized for interactive smartboards and projectors in classrooms.
+
+---
+
+## 🌐 Live Web App
+
+You can access and use the application directly online without any installation:
+👉 **[Launch English Teaching Helper Live!](https://tkngocwork.github.io/English-teaching-helper-Grade3/)**
+
+*For the best interactive experience (speech recognition and webcam-based movement games), please use **Google Chrome** or **Microsoft Edge**.*
 
 ---
 
@@ -48,23 +59,16 @@ An interactive, smart teaching assistant application specifically designed for t
 
 ---
 
-## 🚀 How to Run the App
+## 🚀 How to Run 
 
 ### Option 1: Quick Launch on Windows (Recommended)
 1. Press the **`Windows + R`** keys on your keyboard to open the Run dialog.
-2. Paste the absolute path of your `index.html` file into the box:
+2. Paste the absolute path of your local `index.html` file into the box:
    ```text
    C:\Users\LENOVO\.gemini\antigravity\scratch\global-success-g3-helper\index.html
    ```
 3. Click **`OK`**. The app will immediately launch in your default web browser.
 
-### Option 2: Launch via File Explorer
-1. Press **`Windows + E`** to open File Explorer.
-2. Navigate to the project directory:
-   ```text
-   C:\Users\LENOVO\.gemini\antigravity\scratch\global-success-g3-helper\
-   ```
-3. Double-click the **`index.html`** file to open it.
 
 ---
 
